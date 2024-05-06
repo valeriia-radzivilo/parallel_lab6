@@ -1,0 +1,16 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="MatrixMultiplication" type="Application" factoryName="Application">
+    <option name="MAIN_CLASS_NAME" value="MatrixMultiplication" />
+    <module name="parallel_lab6" />
+    <option name="PROGRAM_PARAMETERS" value="MPJ_HOME=C:\mpj" />
+    <option name="VM_PARAMETERS" value="-jar $MPJ_HOME$\lib\starter.jar -np 3" />
+    <extension name="software.aws.toolkits.jetbrains.core.execution.JavaAwsConnectionExtension">
+      <option name="credential" />
+      <option name="region" />
+      <option name="useCurrentConnection" value="false" />
+    </extension>
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
