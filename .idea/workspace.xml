@@ -4,14 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f61621be-e7d2-43d4-9e8c-d2f220699139" name="Changes" comment="- Init">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+    <list default="true" id="f61621be-e7d2-43d4-9e8c-d2f220699139" name="Changes" comment="- Hotfixes&#10;- Code cleaning">
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/MatrixMultiplication.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/Main.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/parallel_lab6.iml" beforeDir="false" afterPath="$PROJECT_DIR$/parallel_lab6.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Blocking.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Blocking.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Matrix.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Matrix.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MatrixMultiplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MatrixMultiplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/NonBlocking.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/NonBlocking.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Blocking.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/Blocking.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Matrix.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/Matrix.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MatrixMultiplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/NonBlocking.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/NonBlocking.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SyncMultiply.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/SyncMultiply.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,6 +72,11 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\leraz\IdeaProjects\parallel_lab6\src\types" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -82,7 +87,7 @@
       <updated>1714905489507</updated>
       <workItem from="1714905490522" duration="2415000" />
       <workItem from="1714908308994" duration="1765000" />
-      <workItem from="1714983101750" duration="11584000" />
+      <workItem from="1714983101750" duration="17148000" />
     </task>
     <task id="LOCAL-00001" summary="- Init">
       <option name="closed" value="true" />
@@ -92,7 +97,15 @@
       <option name="project" value="LOCAL" />
       <updated>1714995004475</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="- Hotfixes&#10;- Code cleaning">
+      <option name="closed" value="true" />
+      <created>1714998607059</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1714998607059</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -100,13 +113,14 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="- Init" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Init" />
+    <MESSAGE value="- Hotfixes&#10;- Code cleaning" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Hotfixes&#10;- Code cleaning" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Matrix.java</url>
+          <url>file://$PROJECT_DIR$/src/shared/Matrix.java</url>
           <line>41</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>

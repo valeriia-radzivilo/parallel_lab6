@@ -1,9 +1,12 @@
 import mpi.MPI;
+import shared.Matrix;
+import types.Blocking;
+import types.NonBlocking;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class MatrixMultiplication {
+public class Main {
 
     final static boolean IS_BLOCKING = false;
 
@@ -22,12 +25,12 @@ public class MatrixMultiplication {
         int size = MPI.COMM_WORLD.Size();
 
 
-        int n = 36;
+        int n = 3 * 222;
 
         if (n % size != 0) {
             throw new IllegalArgumentException("Matrix size should be divisible by number of processors");
         }
-        
+
         Matrix A = Matrix.generateRandom(n, n);
         Matrix B = Matrix.generateRandom(n, n);
         double[] C = new double[n * n];
@@ -40,20 +43,20 @@ public class MatrixMultiplication {
 
         if (rank == 0) {
             System.out.println("Matrix A:");
-            A.print2D(n, n);
+//            A.print2D(n, n);
             System.out.println("Matrix B:");
-            B.print2D(n, n);
+//            B.print2D(n, n);
             System.out.println("Result:");
             final Matrix result = new Matrix(C, n * n, 1);
-            result.print2D(n, n);
+//            result.print2D(n, n);
 
             final Matrix expected = A.multiply(B);
 
             if (checkResults) {
-                for (int i = 0; i < expected.matrix.length; i++) {
-                    if (expected.matrix[i] != result.matrix[i]) {
+                for (int i = 0; i < expected.getMatrix().length; i++) {
+                    if (expected.getMatrix()[i] != result.getMatrix()[i]) {
                         System.out.println("Error in the result");
-                        System.out.println("Expected: " + expected.matrix[i] + " but got: " + result.matrix[i]);
+                        System.out.println("Expected: " + expected.getMatrix()[i] + " but got: " + result.getMatrix()[i]);
                         break;
                     }
                 }

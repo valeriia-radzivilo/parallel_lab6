@@ -1,3 +1,5 @@
+package shared;
+
 import java.util.Random;
 
 public class Matrix {
@@ -9,7 +11,7 @@ public class Matrix {
         this.matrix = matrix;
     }
 
-    static Matrix generateRandom(int numRows, int numCols) {
+    public static Matrix generateRandom(int numRows, int numCols) {
         double[] matrix = new double[numRows * numCols];
         Random rand = new Random();
         for (int i = 0; i < numRows; i++) {
@@ -29,7 +31,7 @@ public class Matrix {
         }
     }
 
-    double elementAt(int i) {
+    public double elementAt(int i) {
         return matrix[i];
     }
 
@@ -49,7 +51,7 @@ public class Matrix {
         return mat;
     }
 
-    void print2D(int rows, int cols) {
+    public void print2D(int rows, int cols) {
         final double[][] mat = to2D(rows, cols);
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
@@ -60,9 +62,9 @@ public class Matrix {
     }
 
 
-    Matrix multiply(Matrix B) {
+    public Matrix multiply(Matrix B) {
         if (numCols != B.numRows) {
-            throw new IllegalArgumentException("Matrix dimensions are not compatible for multiplication");
+            throw new IllegalArgumentException("shared.Matrix dimensions are not compatible for multiplication");
         }
         double[] result = new double[numRows * B.numCols];
         for (int i = 0; i < numRows; i++) {

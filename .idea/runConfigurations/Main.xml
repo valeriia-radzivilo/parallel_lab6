@@ -1,6 +1,6 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="MatrixMultiplication" type="Application" factoryName="Application">
-    <option name="MAIN_CLASS_NAME" value="MatrixMultiplication" />
+  <configuration default="false" name="Main" type="Application" factoryName="Application">
+    <option name="MAIN_CLASS_NAME" value="Main" />
     <module name="parallel_lab6" />
     <option name="PROGRAM_PARAMETERS" value="MPJ_HOME=C:\mpj" />
     <option name="VM_PARAMETERS" value="-jar $MPJ_HOME$\lib\starter.jar -np 3" />
