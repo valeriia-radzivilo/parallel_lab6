@@ -4,21 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f61621be-e7d2-43d4-9e8c-d2f220699139" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/aws.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/lib.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations/MatrixMultiplication.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/parallel_lab6.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Blocking.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Matrix.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/MatrixMultiplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/NonBlocking.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/SyncMultiply.java" afterDir="false" />
+    <list default="true" id="f61621be-e7d2-43d4-9e8c-d2f220699139" name="Changes" comment="- Init">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/parallel_lab6.iml" beforeDir="false" afterPath="$PROJECT_DIR$/parallel_lab6.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Blocking.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Blocking.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Matrix.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Matrix.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MatrixMultiplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MatrixMultiplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/NonBlocking.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/NonBlocking.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,13 +45,17 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Downloaded.Files.Path.Enabled": "false",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "code.cleanup.on.save": "true",
     "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/mpj/lib",
+    "last_opened_file_path": "C:/Users/leraz/IdeaProjects/parallel_lab6",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.standard": "true",
     "node.js.detected.package.tslint": "true",
@@ -85,19 +82,32 @@
       <updated>1714905489507</updated>
       <workItem from="1714905490522" duration="2415000" />
       <workItem from="1714908308994" duration="1765000" />
-      <workItem from="1714983101750" duration="7831000" />
+      <workItem from="1714983101750" duration="11584000" />
     </task>
+    <task id="LOCAL-00001" summary="- Init">
+      <option name="closed" value="true" />
+      <created>1714995004475</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1714995004475</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="- Init" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Init" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Matrix.java</url>
-          <line>42</line>
+          <line>41</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>

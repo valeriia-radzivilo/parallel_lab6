@@ -5,23 +5,29 @@ import java.util.List;
 
 public class MatrixMultiplication {
 
-    final static boolean IS_BLOCKING = true;
+    final static boolean IS_BLOCKING = false;
 
     public static void main(String[] args) {
         MPI.Init(args);
 
-        runOneSize(IS_BLOCKING);
-        //runForDifferentSizes(rank, size);
+        runOneSize(IS_BLOCKING, true);
+        // runForDifferentSizes(rank, size);
 
 
         MPI.Finalize();
     }
 
-    private static void runOneSize(boolean isBlocking) {
+    public static void runOneSize(boolean isBlocking, boolean checkResults) {
         int rank = MPI.COMM_WORLD.Rank();
         int size = MPI.COMM_WORLD.Size();
 
-        int n = 3;
+
+        int n = 36;
+
+        if (n % size != 0) {
+            throw new IllegalArgumentException("Matrix size should be divisible by number of processors");
+        }
+        
         Matrix A = Matrix.generateRandom(n, n);
         Matrix B = Matrix.generateRandom(n, n);
         double[] C = new double[n * n];
@@ -41,7 +47,20 @@ public class MatrixMultiplication {
             final Matrix result = new Matrix(C, n * n, 1);
             result.print2D(n, n);
 
+            final Matrix expected = A.multiply(B);
+
+            if (checkResults) {
+                for (int i = 0; i < expected.matrix.length; i++) {
+                    if (expected.matrix[i] != result.matrix[i]) {
+                        System.out.println("Error in the result");
+                        System.out.println("Expected: " + expected.matrix[i] + " but got: " + result.matrix[i]);
+                        break;
+                    }
+                }
+                System.out.println("\n\nResults are correct!");
+            }
         }
+
     }
 
 
@@ -68,4 +87,6 @@ public class MatrixMultiplication {
             }
         }
     }
+
+
 }

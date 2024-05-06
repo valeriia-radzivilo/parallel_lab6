@@ -9,50 +9,47 @@ public class Matrix {
         this.matrix = matrix;
     }
 
-static Matrix generateRandom(int numRows, int numCols)
-{
-    double[] matrix = new double[numRows * numCols];
-    Random rand = new Random();
-    for (int i = 0; i < numRows; i++) {
-        for (int j = 0; j < numCols; j++) {
-            matrix[i * numCols + j] = (double)rand.nextInt(10)+1 ;
+    static Matrix generateRandom(int numRows, int numCols) {
+        double[] matrix = new double[numRows * numCols];
+        Random rand = new Random();
+        for (int i = 0; i < numRows; i++) {
+            for (int j = 0; j < numCols; j++) {
+                matrix[i * numCols + j] = (double) rand.nextInt(10) + 1;
+            }
         }
+        return new Matrix(matrix, numRows, numCols);
     }
-    return new Matrix(matrix, numRows, numCols);
-}
-   void print(){
+
+    void print() {
         for (int i = 0; i < numRows; i++) {
             for (int j = 0; j < numCols; j++) {
                 System.out.print(matrix[i * numCols + j] + " ");
             }
             System.out.println();
         }
-   }
+    }
 
-   double elementAt(int i)
-   {
-         return matrix[i];
-   }
+    double elementAt(int i) {
+        return matrix[i];
+    }
 
     public double[] getMatrix() {
         return matrix;
     }
 
 
-    public  double[][] to2D( int rows, int cols) {
+    public double[][] to2D(int rows, int cols) {
         if (matrix.length != rows * cols) {
             throw new IllegalArgumentException("Invalid array size");
         }
         double[][] mat = new double[rows][cols];
         for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < cols; j++) {
-                mat[i][j] = matrix[i * cols + j];
-            }
+            System.arraycopy(matrix, i * cols, mat[i], 0, cols);
         }
         return mat;
     }
 
-     void print2D(int rows, int cols ){
+    void print2D(int rows, int cols) {
         final double[][] mat = to2D(rows, cols);
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
@@ -60,5 +57,21 @@ static Matrix generateRandom(int numRows, int numCols)
             }
             System.out.println();
         }
+    }
+
+
+    Matrix multiply(Matrix B) {
+        if (numCols != B.numRows) {
+            throw new IllegalArgumentException("Matrix dimensions are not compatible for multiplication");
+        }
+        double[] result = new double[numRows * B.numCols];
+        for (int i = 0; i < numRows; i++) {
+            for (int j = 0; j < B.numCols; j++) {
+                for (int k = 0; k < numCols; k++) {
+                    result[i * B.numCols + j] += matrix[i * numCols + k] * B.matrix[k * B.numCols + j];
+                }
+            }
+        }
+        return new Matrix(result, numRows, B.numCols);
     }
 }
