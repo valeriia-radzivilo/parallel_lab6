@@ -1,8 +1,10 @@
 import mpi.MPI;
 import shared.Matrix;
 import types.Blocking;
+import types.MatrixMultiplication;
 import types.NonBlocking;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -13,8 +15,8 @@ public class Main {
     public static void main(String[] args) {
         MPI.Init(args);
 
-        runOneSize(IS_BLOCKING, true);
-        // runForDifferentSizes(rank, size);
+//        runOneSize(IS_BLOCKING, true);
+        runForDifferentSizes();
 
 
         MPI.Finalize();
@@ -25,7 +27,7 @@ public class Main {
         int size = MPI.COMM_WORLD.Size();
 
 
-        int n = 3 * 222;
+        int n = 3;
 
         if (n % size != 0) {
             throw new IllegalArgumentException("Matrix size should be divisible by number of processors");
@@ -43,12 +45,12 @@ public class Main {
 
         if (rank == 0) {
             System.out.println("Matrix A:");
-//            A.print2D(n, n);
+            A.print2D(n, n);
             System.out.println("Matrix B:");
-//            B.print2D(n, n);
+            B.print2D(n, n);
             System.out.println("Result:");
             final Matrix result = new Matrix(C, n * n, 1);
-//            result.print2D(n, n);
+            result.print2D(n, n);
 
             final Matrix expected = A.multiply(B);
 
@@ -67,27 +69,78 @@ public class Main {
     }
 
 
-    private static void runForDifferentSizes(int rank, int size) {
+    private static void runForDifferentSizes() {
+        int rank = MPI.COMM_WORLD.Rank();
+        int size = MPI.COMM_WORLD.Size();
+
         if (rank == 0)
-            System.out.println("Results for " + size + "processors");
-        int experC = 2;
-        List<Integer> arraySizes = Arrays.asList(500, 1000, 1500, 1750);
+            System.out.println("Results for " + size + " processors");
 
+        List<Integer> arraySizes = List.of(3000);
         for (int n : arraySizes) {
+            if (n % size != 0) {
+                throw new IllegalArgumentException("Matrix size should be divisible by number of processors");
+            }
 
-            Matrix A = Matrix.generateRandom(n, n);
-            Matrix B = Matrix.generateRandom(n, n);
-            double[] C = new double[n * n];
+            List<Long> timesBlocking = new ArrayList<>();
+            List<Long> timesNonBlocking = new ArrayList<>();
+            List<Long> times = new ArrayList<>();
+            for (int j = 0; j < 2; j++) {
+                Matrix A = Matrix.generateRandom(n, n);
+                Matrix B = Matrix.generateRandom(n, n);
+                double[] C = new double[n * n];
+                if (j == 0) {
+                    final long start_time = System.currentTimeMillis();
+                    MatrixMultiplication.multiply(A, B, n, rank, size);
+                    if (rank == 0) {
+                        final long time = System.currentTimeMillis() - start_time;
+                        System.out.println("Sequential: " + time + " ms taken for " + n + " elements in an array");
+                        times.add(time);
+                    }
+                }
 
-            final long start_time = System.currentTimeMillis();
-            for (int i = 0; i < experC; i++) {
+                final long start_time_blocking = System.currentTimeMillis();
+
                 Blocking.multiply(rank, size, n, A, B, C);
+                MPI.COMM_WORLD.Barrier();
+                if (rank == 0) {
+                    final long timeBlock = System.currentTimeMillis() - start_time_blocking;
+                    System.out.println("BL: " + timeBlock + " ms taken for " + n + " elements in an array");
+                    timesBlocking.add(timeBlock);
+                }
+
+                final long start_time_non_blocking = System.currentTimeMillis();
+                NonBlocking.multiply(rank, size, n, A, B, C);
+                MPI.COMM_WORLD.Barrier();
+                if (rank == 0) {
+                    final long timeNonBl = System.currentTimeMillis() - start_time_non_blocking;
+                    System.out.println("NON-BL: " + timeNonBl + " ms taken for " + n + " elements in an array");
+                    timesNonBlocking.add(timeNonBl);
+                }
             }
-            MPI.COMM_WORLD.Barrier();
+
+            // count average time
             if (rank == 0) {
-                final long time = System.currentTimeMillis() - start_time;
-                System.out.println(time + " ms taken for " + n + " elements in an array");
+                System.out.println("\r\n\n");
+                long sumBlock = 0;
+                long sumNonBlock = 0;
+                for (Long time : timesBlocking) {
+                    sumBlock += time;
+                }
+                for (Long time : timesNonBlocking) {
+                    sumNonBlock += time;
+                }
+                final double avgBlock = (double) sumBlock / timesBlocking.size();
+                final double avgNonBlock = (double) sumNonBlock / timesBlocking.size();
+                final double avg = (double) times.stream().mapToLong(Long::longValue).sum() / times.size();
+                System.out.println("BLOCKING Average time for " + n + " elements in an array: " + avgBlock + " ms");
+                System.out.println("NON-BLOCKING Average time for " + n + " elements in an array: " + avgNonBlock + " ms");
+                System.out.println("\r\n\n");
+                System.out.println("Speedup Blocking " + avg / avgBlock);
+                System.out.println("Speedup Non-Blocking " + avg / avgNonBlock);
+                System.out.println("\r\n\n");
             }
+
         }
     }
 
